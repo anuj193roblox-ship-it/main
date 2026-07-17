@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Ads Lab | Scale Your Ecom Brand From 5 to 6 Figures</title>
+  <meta name="description" content="We run the media buying, creative testing, email/SMS, CRO, and landing pages behind ecom brands breaking past the plateau. No contracts, no fluff.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- FontAwesome Icons for quick premium shapes -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-track">
+      <span>META ROAS 4.2x &mdash;</span>
+      <span>REVENUE +200% &mdash;</span>
+      <span>CAC -38% &mdash;</span>
+      <span>LTV +91% &mdash;</span>
+      <span>SHOPIFY CVR 3.1% &mdash;</span>
+      <span>DATA-DRIVEN SCALING &mdash;</span>
+      <span>META ROAS 4.2x &mdash;</span>
+      <span>REVENUE +200% &mdash;</span>
+      <span>CAC -38% &mdash;</span>
+      <span>LTV +91% &mdash;</span>
+      <span>SHOPIFY CVR 3.1% &mdash;</span>
+      <span>DATA-DRIVEN SCALING &mdash;</span>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo" id="header-logo">
+        SHADOW<span class="highlight">ADSLAB</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#problem">The Problem</a>
+        <a href="#system">The Scale Loop</a>
+        <a href="#proof">Our Proof</a>
+        <a href="#team">The Team</a>
+        <a href="#onboarding">Onboarding</a>
+      </nav>
+      <a href="#cta-form" class="cta-button nav-cta" id="nav-cta-btn">
+        FREE AUDIT <span class="arrow">&rarr;</span>
+      </a>
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-grid container">
+      <!-- Left Column: Copy & Form trigger -->
+      <div class="hero-content">
+        <div class="hero-badge">100% Performance-Driven System</div>
+        <h1 class="hero-title">
+          The Last Agency You'll Need to Scale From <span class="text-orange">5 Figures to 6</span>
+        </h1>
+        <p class="hero-subtitle">
+          Shadow Ads Lab runs the media buying, creative testing, email/SMS, CRO, and landing pages behind ecom brands breaking past the plateau. Not tactics. A system, built and run by a full team.
+        </p>
+        <div class="hero-actions">
+          <a href="#cta-form" class="cta-button primary-cta" id="hero-cta-btn">
+            Book a Strategy Call <span class="cta-subtext">No Contracts, No Fluff</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right Column: Interactive Stripe-Style Dashboard -->
+      <div class="hero-dashboard-container">
+        <div class="dashboard-card">
+          <div class="dashboard-header">
+            <div class="header-dot red"></div>
+            <div class="header-dot yellow"></div>
+            <div class="header-dot green"></div>
+            <span class="dashboard-title">Live Scale Operations</span>
+          </div>
+          
+          <div class="dashboard-body">
+            <div class="metric-row">
+              <div class="metric-box">
+                <span class="metric-label">CURRENT MONTHLY REVENUE</span>
+                <span class="metric-value" id="revenue-counter">$50,000</span>
+              </div>
+              <div class="metric-badge-container">
+                <span class="live-pulse"></span>
+                <span class="badge-text text-green">Scale Velocity: 2.0x</span>
+              </div>
+            </div>
+            
+            <!-- Graphic Chart / Graph representation (Stripe-style) -->
+            <div class="graph-container">
+              <svg viewBox="0 0 400 150" class="stripe-graph">
+                <defs>
+                  <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Grid Lines -->
+                <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+                <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+                <line x1="0" y1="120" x2="400" y2="120" stroke="rgba(255,255,255,0.05)" stroke-dasharray="4"/>
+                
+                <!-- Main chart path (animating up) -->
+                <path d="M 0 120 Q 80 110, 160 85 T 320 40 T 400 20 L 400 150 L 0 150 Z" fill="url(#chart-grad)"/>
+                <path d="M 0 120 Q 80 110, 160 85 T 320 40 T 400 20" fill="none" stroke="var(--accent)" stroke-width="4" id="graph-line"/>
+                
+                <!-- Pulsing node at current value -->
+                <circle cx="400" cy="20" r="6" fill="var(--accent)" />
+                <circle cx="400" cy="20" r="12" fill="var(--accent)" opacity="0.4" class="graph-pulse" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- The Problem, Named Section -->
+  <section class="section problem-section" id="problem">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag text-orange">THE PROBLEM, NAMED</span>
+        <h2 class="section-title">You're Not Failing. <span class="gradient-text">Your Systems Are.</span></h2>
+        <p class="section-desc max-width-center">
+          You're running ads. Posting content. Doing "everything right." And the revenue chart looks exactly the same as it did 6 months ago. At 5 figures a month, effort stops being the bottleneck. Systems are.
+        </p>
+      </div>
+      
+      <div class="problem-grid">
+        <!-- Card 1 -->
+        <div class="problem-card">
+          <div class="card-status-dot"></div>
+          <h3 class="problem-card-title">Ad Account Chaos</h3>
+          <p class="problem-card-text">
+            Your ad account has no real testing structure, so one algorithm shift turns your best scaling day into your worst.
+          </p>
+          <div class="chart-wrapper">
+            <svg class="decline-chart" viewBox="0 0 120 40">
+              <path d="M0,10 Q30,5 60,25 T120,38" fill="none" stroke="#EF4444" stroke-width="2.5" />
+              <circle cx="120" cy="38" r="4" fill="#EF4444" class="flicker-dot" />
+            </svg>
+            <span class="card-stat-label text-red">EFFICIENCY -32%</span>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="problem-card">
+          <div class="card-status-dot"></div>
+          <h3 class="problem-card-title">Creative Burnout</h3>
+          <p class="problem-card-text">
+            Your creative strategy is running purely on instinct. When your top hook fatigues, you have nothing ready to replace it.
+          </p>
+          <div class="chart-wrapper">
+            <svg class="decline-chart" viewBox="0 0 120 40">
+              <path d="M0,5 Q40,8 80,30 T120,35" fill="none" stroke="#EF4444" stroke-width="2.5" />
+              <circle cx="120" cy="35" r="4" fill="#EF4444" class="flicker-dot" />
+            </svg>
+            <span class="card-stat-label text-red">FATIGUE RATE +54%</span>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="problem-card">
+          <div class="card-status-dot"></div>
+          <h3 class="problem-card-title">Untouched Email & SMS</h3>
+          <p class="problem-card-text">
+            Your retention list is worth 20% to 30% of your total revenue, yet it sits untouched, unsegmented, and bleeding potential.
+          </p>
+          <div class="chart-wrapper">
+            <svg class="decline-chart" viewBox="0 0 120 40">
+              <path d="M0,15 Q30,10 60,30 T120,37" fill="none" stroke="#EF4444" stroke-width="2.5" />
+              <circle cx="120" cy="37" r="4" fill="#EF4444" class="flicker-dot" />
+            </svg>
+            <span class="card-stat-label text-red">RETENTION SHARE -18%</span>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="problem-card">
+          <div class="card-status-dot"></div>
+          <h3 class="problem-card-title">Stale Landing Pages</h3>
+          <p class="problem-card-text">
+            Your landing page hasn't been rebuilt in a year, bleeding conversions on expensive traffic you are already paying for.
+          </p>
+          <div class="chart-wrapper">
+            <svg class="decline-chart" viewBox="0 0 120 40">
+              <path d="M0,8 Q30,12 70,28 T120,39" fill="none" stroke="#EF4444" stroke-width="2.5" />
+              <circle cx="120" cy="39" r="4" fill="#EF4444" class="flicker-dot" />
+            </svg>
+            <span class="card-stat-label text-red">CONVERSION RATE -45%</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="problem-conclusion text-center">
+        <p class="conclusion-text">
+          These aren't marketing problems. They're <span class="underline-orange">structural</span>. And structural problems compound.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Is Different (The Scale Loop) -->
+  <section class="section system-section" id="system">
+    <div class="container grid-two">
+      <!-- Left Column: Context -->
+      <div class="system-intro">
+        <span class="section-tag text-orange">WHY THIS IS DIFFERENT</span>
+        <h2 class="section-title">We Don't Sell You 5 Services. We Run 1 System: <span class="text-orange">The Scale Loop</span></h2>
+        
+        <p class="system-body-text">
+          Most agencies hand you separate specialists who never talk to each other. Your media buyer doesn't know what your email team is sending. Your landing page doesn't match your ad angle. Nothing compounds.
+        </p>
+        <p class="system-body-text">
+          <strong>The Scale Loop</strong> connects all five growth pillars into a weekly, synchronized engine. Data feeds creative, creative shapes funnels, funnels capture traffic, and emails convert the rest.
+        </p>
+        
+        <!-- Interactive node explainer block -->
+        <div class="node-explainer-card" id="loop-explainer">
+          <h4 class="explainer-title" id="explainer-node-title">Click any loop node to inspect</h4>
+          <p class="explainer-body" id="explainer-node-desc">
+            Explore how our integrated system functions cohesively to cycle data and revenue into your ecommerce brand.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Right Column: Interactive Circular Loop Diagram -->
+      <div class="loop-diagram-container">
+        <div class="loop-wrapper">
+          <!-- Central Scale Text -->
+          <div class="loop-center">
+            <span class="center-title">SCALE</span>
+            <span class="center-sub">LOOP</span>
+            <div class="center-pulse"></div>
+          </div>
+          
+          <!-- Loop SVG Path with animated line -->
+          <svg class="loop-svg" viewBox="0 0 300 300">
+            <defs>
+              <linearGradient id="loop-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--accent)" />
+                <stop offset="50%" stop-color="#FF7A00" />
+                <stop offset="100%" stop-color="var(--accent)" />
+              </linearGradient>
+            </defs>
+            <!-- Background circle track -->
+            <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="6" />
+            <!-- Active cycling dash line -->
+            <circle cx="150" cy="150" r="110" fill="none" stroke="url(#loop-gradient)" stroke-width="4" stroke-dasharray="80 180" class="cycling-path" />
+          </svg>
+          
+          <!-- Five Nodes positioned absolutely -->
+          <!-- 1: Media Buying (top-center, offset slightly) -->
+          <div class="loop-node active" id="node-1" data-node="1" style="top: 10%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="node-dot"><span class="node-num">1</span></div>
+            <span class="node-label">Media Buying</span>
+          </div>
+          
+          <!-- 2: Creative Testing (top-right) -->
+          <div class="loop-node" id="node-2" data-node="2" style="top: 36%; left: 88%; transform: translate(-50%, -50%);">
+            <div class="node-dot"><span class="node-num">2</span></div>
+            <span class="node-label">Creative Testing</span>
+          </div>
+          
+          <!-- 3: Landing Pages (bottom-right) -->
+          <div class="loop-node" id="node-3" data-node="3" style="top: 78%; left: 74%; transform: translate(-50%, -50%);">
+            <div class="node-dot"><span class="node-num">3</span></div>
+            <span class="node-label">Landing Pages</span>
+          </div>
+          
+          <!-- 4: Email / SMS (bottom-left) -->
+          <div class="loop-node" id="node-4" data-node="4" style="top: 78%; left: 26%; transform: translate(-50%, -50%);">
+            <div class="node-dot"><span class="node-num">4</span></div>
+            <span class="node-label">Email & SMS</span>
+          </div>
+          
+          <!-- 5: Performance Data (top-left) -->
+          <div class="loop-node" id="node-5" data-node="5" style="top: 36%; left: 12%; transform: translate(-50%, -50%);">
+            <div class="node-dot"><span class="node-num">5</span></div>
+            <span class="node-label">CRO & Data</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof (Objection Handling) -->
+  <section class="section proof-section" id="proof">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag text-orange">PROOF OF THE SYSTEM</span>
+        <h2 class="section-title">What Brands See Inside The First 90 Days</h2>
+        <p class="section-desc max-width-center">
+          We don't deal in hypothetical growth. Here's exactly what happens when The Scale Loop is integrated into real ad accounts. Hover to reveal actual ROAS and conversion uplifts.
+        </p>
+      </div>
+      
+      <!-- 3D Flipping Case Study Cards -->
+      <div class="case-studies-grid">
+        <!-- Card 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- Front of Card -->
+            <div class="flip-card-front">
+              <div class="card-badge">Skincare</div>
+              <h3 class="card-brand">DTC Skincare Brand</h3>
+              <div class="scale-info">
+                <span class="val-before">$45k/mo</span>
+                <span class="arrow-right">&rarr;</span>
+                <span class="val-after text-orange">$115k/mo</span>
+              </div>
+              <div class="card-fixes">
+                <h4>WHAT WE FIXED:</h4>
+                <ul>
+                  <li>Rebuilt interactive custom lander</li>
+                  <li>Launched 3 modular creative hooks</li>
+                  <li>Re-routed abandoned cart email sequence</li>
+                </ul>
+              </div>
+              <span class="flip-hint">Hover to See Results</span>
+            </div>
+            <!-- Back of Card -->
+            <div class="flip-card-back">
+              <div class="back-content">
+                <span class="result-number">+78%</span>
+                <span class="result-label">Increase in ROAS</span>
+                <div class="result-divider"></div>
+                <span class="result-number">3.4x</span>
+                <span class="result-label">Email revenue share multiplier</span>
+                <div class="result-divider"></div>
+                <span class="result-number">+40%</span>
+                <span class="result-label">Conversion Rate Lift</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- Front of Card -->
+            <div class="flip-card-front">
+              <div class="card-badge">Apparel</div>
+              <h3 class="card-brand">Premium Apparel</h3>
+              <div class="scale-info">
+                <span class="val-before">$60k/mo</span>
+                <span class="arrow-right">&rarr;</span>
+                <span class="val-after text-orange">$180k/mo</span>
+              </div>
+              <div class="card-fixes">
+                <h4>WHAT WE FIXED:</h4>
+                <ul>
+                  <li>Optimized Meta catalog structuring</li>
+                  <li>Sourced and engineered 15 Creator ads</li>
+                  <li>Deployed post-purchase SMS sequence</li>
+                </ul>
+              </div>
+              <span class="flip-hint">Hover to See Results</span>
+            </div>
+            <!-- Back of Card -->
+            <div class="flip-card-back">
+              <div class="back-content">
+                <span class="result-number">+140%</span>
+                <span class="result-label">Monthly Gross Revenue</span>
+                <div class="result-divider"></div>
+                <span class="result-number">4.2x</span>
+                <span class="result-label">LTV to CAC Ratio achieved</span>
+                <div class="result-divider"></div>
+                <span class="result-number">+48%</span>
+                <span class="result-label">Return on Ad Spend (ROAS)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- Front of Card -->
+            <div class="flip-card-front">
+              <div class="card-badge">Supplements</div>
+              <h3 class="card-brand">DTC Supplements</h3>
+              <div class="scale-info">
+                <span class="val-before">$30k/mo</span>
+                <span class="arrow-right">&rarr;</span>
+                <span class="val-after text-orange">$95k/mo</span>
+              </div>
+              <div class="card-fixes">
+                <h4>WHAT WE FIXED:</h4>
+                <ul>
+                  <li>Built scientifically-backed landing page</li>
+                  <li>A/B tested offer structure (bundles)</li>
+                  <li>Automated subscriber win-back flow</li>
+                </ul>
+              </div>
+              <span class="flip-hint">Hover to See Results</span>
+            </div>
+            <!-- Back of Card -->
+            <div class="flip-card-back">
+              <div class="back-content">
+                <span class="result-number">+195%</span>
+                <span class="result-label">Conversion Rate Increase</span>
+                <div class="result-divider"></div>
+                <span class="result-number">-42%</span>
+                <span class="result-label">Reduction in CPA (acquisition cost)</span>
+                <div class="result-divider"></div>
+                <span class="result-number">2.1x</span>
+                <span class="result-label">First-order profit margins</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Founder Note block as requested -->
+      <div class="founder-note-card">
+        <div class="note-header">
+          <div class="founder-avatar">
+            <span>SL</span>
+          </div>
+          <div class="founder-meta">
+            <span class="founder-name">Founder's Note</span>
+            <span class="founder-title">Shadow Ads Lab Operations</span>
+          </div>
+        </div>
+        <p class="note-text">
+          "We only take a limited number of brands at a time because The Scale Loop requires real, focused attention on your account, not a templated playbook. Book a call and we'll show you exactly where your current setup is leaking revenue, with absolutely no obligation."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Team Section -->
+  <section class="section team-section" id="team">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag text-orange">WHO'S ON YOUR ACCOUNT</span>
+        <h2 class="section-title">A Dedicated Team, Not a Freelancer Wearing 5 Hats</h2>
+        <p class="section-desc max-width-center">
+          Generalists breed mediocrity. Your brand is scaled by hyper-specialists who focus on exactly one pillar of The Scale Loop day in, day out.
+        </p>
+      </div>
+      
+      <div class="team-grid">
+        <!-- Team Member 1 -->
+        <div class="team-card">
+          <div class="team-badge">ACQUISITION</div>
+          <div class="team-visual">
+            <svg class="team-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <h3 class="team-name">Media Buyer</h3>
+          <p class="team-tagline">Paid Acquisition Specialist</p>
+          <div class="team-reveal-info">
+            <span class="reveal-stat">7+ Yrs Exp</span>
+            <span class="reveal-desc">Manages Meta/Google accounts strictly for DTC brands scaling to 7 figures.</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 2 -->
+        <div class="team-card">
+          <div class="team-badge">CREATIVE</div>
+          <div class="team-visual">
+            <svg class="team-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+          </div>
+          <h3 class="team-name">Creative Strategist</h3>
+          <p class="team-tagline">Angles & Asset Testing</p>
+          <div class="team-reveal-info">
+            <span class="reveal-stat">150+ Ads Tested</span>
+            <span class="reveal-desc">Engineers high-retention hooks and custom creator assets designed for conversion.</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 3 -->
+        <div class="team-card">
+          <div class="team-badge">RETENTION</div>
+          <div class="team-visual">
+            <svg class="team-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <h3 class="team-name">Retention Marketer</h3>
+          <p class="team-tagline">Email/SMS Automations</p>
+          <div class="team-reveal-info">
+            <span class="reveal-stat">$8M+ Generated</span>
+            <span class="reveal-desc">Designs advanced post-purchase, win-back, and VIP flows inside Klaviyo.</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 4 -->
+        <div class="team-card">
+          <div class="team-badge">FUNNEL</div>
+          <div class="team-visual">
+            <svg class="team-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <h3 class="team-name">CRO Specialist</h3>
+          <p class="team-tagline">Funnel & Custom Landing Pages</p>
+          <div class="team-reveal-info">
+            <span class="reveal-stat">200+ Pages Built</span>
+            <span class="reveal-desc">Focuses purely on site speed, conversion rate optimization, and landing page engineering.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Risk Reversal Section -->
+  <section class="section risk-section">
+    <div class="container grid-two align-center">
+      <!-- Left Column: Copy -->
+      <div class="risk-content">
+        <span class="section-tag text-orange">RISK REVERSAL</span>
+        <h2 class="section-title">No Long Contracts.<br>No Locked-In Retainers.</h2>
+        <p class="risk-body-text">
+          We don't ask you to trust us blindly for 6 months. We start with a defined test phase, prove the system is working with your own data, and scale from there.
+        </p>
+        <div class="risk-features">
+          <div class="risk-feature-item">
+            <span class="check-icon">&check;</span>
+            <div>
+              <strong>30-Day Opt Out:</strong> Not happy with progress? Cancel with simple notice, zero friction.
+            </div>
+          </div>
+          <div class="risk-feature-item">
+            <span class="check-icon">&check;</span>
+            <div>
+              <strong>Performance Review:</strong> Clear, bi-weekly checks before scaling any ad budgets.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column: Interactive SVG Padlock Animation -->
+      <div class="lock-visual-container">
+        <div class="lock-card">
+          <div class="lock-graphics-wrapper">
+            <!-- Animated SVG Padlock -->
+            <svg class="padlock-svg" viewBox="0 0 100 120" id="padlock-svg">
+              <defs>
+                <filter id="orange-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              
+              <!-- Broken chains elements (Absolute positioned or offset via groups) -->
+              <g class="chain-link left-chain" id="chain-left">
+                <path d="M 10 90 Q 2 75 18 65" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 15 75 Q 8 60 22 50" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <g class="chain-link right-chain" id="chain-right">
+                <path d="M 90 90 Q 98 75 82 65" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 85 75 Q 92 60 78 50" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="4" stroke-linecap="round"/>
+              </g>
+
+              <!-- Padlock Shackle / Loop -->
+              <path class="lock-shackle" id="lock-shackle" d="M 30 50 L 30 30 A 20 20 0 0 1 70 30 L 70 50" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round"/>
+              
+              <!-- Padlock Body -->
+              <rect class="lock-body" x="20" y="45" width="60" height="50" rx="8" ry="8" fill="#1E222B" stroke="var(--accent)" stroke-width="4" filter="url(#orange-glow)" />
+              
+              <!-- Keyhole -->
+              <path class="keyhole" d="M 50 62 A 5 5 0 0 0 46 69 L 46 78 L 54 78 L 54 69 A 5 5 0 0 0 50 62 Z" fill="#FF5722"/>
+            </svg>
+          </div>
+          <div class="lock-status-badge" id="lock-status-text">CONTRACTS SECURED</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Onboarding Steps Section -->
+  <section class="section onboarding-section" id="onboarding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag text-orange">THE ONBOARDING PIPELINE</span>
+        <h2 class="section-title">What Happens After You Book a Call</h2>
+        <p class="section-desc max-width-center">
+          Zero friction. We audit, identify the exact bottleneck, and build out your custom Scale Loop inside two weeks.
+        </p>
+      </div>
+      
+      <!-- Timeline Component -->
+      <div class="timeline-container">
+        <!-- Connecting Progress Bar -->
+        <div class="timeline-progress">
+          <div class="timeline-progress-fill" id="timeline-fill"></div>
+        </div>
+        
+        <!-- Step 1 -->
+        <div class="timeline-step" id="step-1">
+          <div class="timeline-marker">1</div>
+          <div class="timeline-content">
+            <span class="timeline-time">Day 1</span>
+            <h3 class="timeline-step-title">30-Min Growth Audit</h3>
+            <p class="timeline-step-text">
+              We review your ad account structures, active creatives, email flows, and landing page load speeds live on Zoom.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="timeline-step" id="step-2">
+          <div class="timeline-marker">2</div>
+          <div class="timeline-content">
+            <span class="timeline-time">Day 3</span>
+            <h3 class="timeline-step-title">The Leaks Breakdown</h3>
+            <p class="timeline-step-text">
+              You receive an audit breakdown of which of the 5 systems is costing you the most revenue right now &mdash; whether or not you choose to work with us.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="timeline-step" id="step-3">
+          <div class="timeline-marker">3</div>
+          <div class="timeline-content">
+            <span class="timeline-time">Day 7-14</span>
+            <h3 class="timeline-step-title">Launch Scale Loop Test</h3>
+            <p class="timeline-step-text">
+              If it's a fit, we map out, configure, and launch your brand's custom Scale Loop. We begin scaling performance within 14 days.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Form Section -->
+  <section class="section cta-section" id="cta-form">
+    <div class="container grid-two">
+      <!-- Left Column: Final Copy & Urgent Pulse -->
+      <div class="cta-info-col">
+        <h2 class="cta-main-title">
+          The Brands Still Stuck at 5 Figures a Year From Now Are the Ones Who Didn't Fix This Today
+        </h2>
+        <p class="cta-info-text">
+          We take a highly limited cohort of brands each month to ensure dedicated strategist and designer attention. Secure your diagnostic audit now.
+        </p>
+        
+        <!-- Spots Counter Pulse Widget -->
+        <div class="spots-widget">
+          <span class="spots-pulse"></span>
+          <div class="spots-text-box">
+            <span class="spots-count" id="spots-counter">3</span>
+            <span class="spots-label">SPOTS REMAINING FOR ONBOARDING THIS MONTH</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column: Lead Form Card -->
+      <div class="cta-form-col">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>Schedule Strategy Call</h3>
+            <p>100% Free Audit Included &bull; No Obligation</p>
+          </div>
+          
+          <form class="lead-form" id="growth-lead-form">
+            <div class="form-group">
+              <label for="full-name">Your Name</label>
+              <input type="text" id="full-name" placeholder="John Doe" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email-address">Business Email</label>
+              <input type="email" id="email-address" placeholder="john@brandname.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="brand-name">Brand Name</label>
+              <input type="text" id="brand-name" placeholder="e.g. Aura Skincare" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="current-rev">Monthly Revenue</label>
+                <select id="current-rev" required>
+                  <option value="" disabled selected>Select Revenue Range</option>
+                  <option value="under-10k">Under $10k / mo</option>
+                  <option value="10k-50k">$10k &ndash; $50k / mo</option>
+                  <option value="50k-100k">$50k &ndash; $100k / mo</option>
+                  <option value="over-100k">$100k+ / mo</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="website-url">Website URL</label>
+                <input type="url" id="website-url" placeholder="https://yourbrand.com" required>
+              </div>
+            </div>
+            
+            <button type="submit" class="cta-button submit-btn" id="form-submit-btn">
+              BOOK A STRATEGY CALL <span class="arrow">&rarr;</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Modal Popup -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-card">
+      <div class="modal-icon">&check;</div>
+      <h2>Audit Scheduled Successfully!</h2>
+      <p>We've received your brand details. One of our growth strategy leads will review your site and email you a calendar link in the next 15 minutes.</p>
+      <button class="cta-button primary-cta close-modal-btn" id="close-modal-btn">Okay, Got It</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <a href="#" class="logo">SHADOW<span class="highlight">ADSLAB</span></a>
+        <p>&copy; 2026 Shadow Ads Lab. All growth systems locked and running.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
