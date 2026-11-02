@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* Colour values mirror src/design/tokens.ts (spec section 3.1). Do not add hex values anywhere else. */
+:root {
+  --primary: #1f6f5c;
+  --primary-pressed: #17594a;
+  --primary-tint: #eef5f3;
+  --primary-tint-2: #d9eae5;
+  --bg: #ffffff;
+  --bg-patient: #fff9f0;
+  --surface: #ffffff;
+  --text: #1b2b27;
+  --text-muted: #4a5d58;
+  --text-placeholder: #5e726c;
+  --border: #c9dad5;
+  --border-input: #6f8a83;
+  --ok: #2e9e6b;
+  --warn: #e0a100;
+  --danger: #d64545;
+  --info: #2f6fb5;
+  --ok-bg: #e6f5ee;
+  --ok-text: #1e7a50;
+  --warn-bg: #fff4d6;
+  --warn-text: #7a5600;
+  --danger-bg: #fdecec;
+  --danger-text: #a82e2e;
+  --info-bg: #e8f1fb;
+  --info-text: #245a94;
+  --neutral-bg: #eef1f0;
+  --neutral-text: #505f5b;
+  --destructive: #c23a3a;
+}
+
+/* Family app only. Patient mode never sets data-theme="dark". */
+[data-theme="dark"] {
+  --bg: #0f1a17;
+  --surface: #16241f;
+  --text: #e6f0ec;
+  --text-muted: #a8bdb6;
+  --primary: #4fb59a;
+  --border-input: #6e8a82;
+  --ok-text: #5fd39b;
+  --warn-text: #f2c14e;
+  --danger-text: #ff8a8a;
+  --info-text: #8ab8ea;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-tint: var(--primary-tint);
+  --color-primary-tint-2: var(--primary-tint-2);
+  --color-bg: var(--bg);
+  --color-patient: var(--bg-patient);
+  --color-surface: var(--surface);
+  --color-ink: var(--text);
+  --color-ink-muted: var(--text-muted);
+  --color-ink-placeholder: var(--text-placeholder);
+  --color-line: var(--border);
+  --color-line-input: var(--border-input);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-ok-text: var(--ok-text);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-text: var(--warn-text);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-text: var(--danger-text);
+  --color-danger-btn: var(--destructive);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-info-text: var(--info-text);
+  --color-neutral-bg: var(--neutral-bg);
+  --color-neutral-text: var(--neutral-text);
+
+  --font-sans: var(--font-inter);
+  --font-patient: var(--font-nunito);
+
+  --radius-card: 16px;
+  --radius-input: 12px;
+  --radius-chip: 999px;
+  --radius-patient-button: 24px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Nurra speaking indicator: slow 2 s pulse (spec 3.4). */
+@keyframes nurra-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.nurra-speaking {
+  animation: nurra-pulse 2s ease-in-out infinite;
+}
