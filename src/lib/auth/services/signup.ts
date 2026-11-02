@@ -58,6 +58,8 @@ async function attempt(raw: unknown, ctx: { ip: string }, deps: SignupDeps): Pro
     deps.captcha.forwardToSupabase ? captchaToken : undefined,
   );
 
+  // Supabase rejected the CAPTCHA token: about the check, not the account, so it is safe to say.
+  if (errorCode === "captcha_failed") return { status: 400, body: { error: CAPTCHA_FAILED } };
   // A weak or leaked password is about the password, not the account, so it is safe to say.
   if (errorCode === "weak_password") {
     return { status: 400, body: { error: "Choose a stronger password. Avoid common or leaked passwords." } };

@@ -32,6 +32,134 @@ export function TextField({ label, name, hint, id, ...input }: FieldProps) {
   );
 }
 
+const control =
+  "min-h-12 w-full rounded-input border border-line-input bg-surface px-3 text-base text-ink focus:outline-2 focus:outline-offset-2 focus:outline-primary";
+
+export function SelectField({
+  label,
+  name,
+  value,
+  onChange,
+  options,
+  hint,
+}: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: readonly { value: string; label: string }[];
+  hint?: string;
+}) {
+  const id = `field-${name}`;
+  return (
+    <div className="space-y-1">
+      <label htmlFor={id} className="block text-sm font-medium">
+        {label}
+      </label>
+      <select id={id} name={name} value={value} onChange={(e) => onChange(e.target.value)} className={control} aria-describedby={hint ? `${id}-hint` : undefined}>
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+      {hint && (
+        <p id={`${id}-hint`} className="text-sm text-ink-muted">
+          {hint}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export function TextAreaField({
+  label,
+  name,
+  value,
+  onChange,
+  hint,
+  rows = 3,
+}: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+  hint?: string;
+  rows?: number;
+}) {
+  const id = `field-${name}`;
+  return (
+    <div className="space-y-1">
+      <label htmlFor={id} className="block text-sm font-medium">
+        {label}
+      </label>
+      <textarea
+        id={id}
+        name={name}
+        rows={rows}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        aria-describedby={hint ? `${id}-hint` : undefined}
+        className={`${control} py-2`}
+      />
+      {hint && (
+        <p id={`${id}-hint`} className="text-sm text-ink-muted">
+          {hint}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export function CheckboxField({ label, name, checked, onChange }: { label: ReactNode; name: string; checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <label className="flex min-h-12 items-start gap-3 py-2">
+      <input type="checkbox" name={name} checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-primary" />
+      <span>{label}</span>
+    </label>
+  );
+}
+
+/** Pick several from a few: day buttons, channels. Each is a real checkbox for screen readers. */
+export function ChipToggles<T extends string | number>({
+  legend,
+  options,
+  selected,
+  onChange,
+}: {
+  legend: string;
+  options: readonly { value: T; label: string }[];
+  selected: T[];
+  onChange: (next: T[]) => void;
+}) {
+  return (
+    <fieldset className="space-y-2">
+      <legend className="text-sm font-medium">{legend}</legend>
+      <div className="flex flex-wrap gap-2">
+        {options.map((o) => {
+          const on = selected.includes(o.value);
+          return (
+            <label
+              key={String(o.value)}
+              className={`inline-flex min-h-12 min-w-12 cursor-pointer items-center justify-center rounded-chip border px-3 text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary ${
+                on ? "border-primary bg-primary text-white" : "border-line-input bg-surface text-ink"
+              }`}
+            >
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={on}
+                onChange={() => onChange(on ? selected.filter((v) => v !== o.value) : [...selected, o.value])}
+              />
+              {o.label}
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  );
+}
+
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "danger";
   busy?: boolean;

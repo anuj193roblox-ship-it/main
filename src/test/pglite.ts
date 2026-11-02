@@ -16,7 +16,8 @@ export function readSeed(): string {
   return readFileSync(path.join(process.cwd(), "supabase/seed.sql"), "utf8");
 }
 
-export async function createTestDb(): Promise<PGlite> {
+/** Fresh test database. With migrate: false, only the Supabase stand-ins exist (for the migration runner tests). */
+export async function createTestDb({ migrate = true }: { migrate?: boolean } = {}): Promise<PGlite> {
   const db = new PGlite();
   await db.exec(`
     create role anon nologin;
@@ -29,6 +30,7 @@ export async function createTestDb(): Promise<PGlite> {
     grant usage on schema public, auth to anon, authenticated, service_role;
     grant execute on function auth.uid() to anon, authenticated, service_role;
   `);
+  if (!migrate) return db;
   for (const file of migrationFiles()) {
     const sql = readFileSync(path.join(migrationsDir, file), "utf8").replace(
       "create extension if not exists pgcrypto;",

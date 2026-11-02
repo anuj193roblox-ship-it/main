@@ -43,8 +43,8 @@ function populate(h: number): string {
       values ('${id(h, 17)}', '${H}', '${P}', 'prescription', 'path/${h}.pdf', 'application/pdf', 1000);
     insert into public.care_plans (id, household_id, patient_id, name)
       values ('${id(h, 18)}', '${H}', '${P}', 'Plan ${h}');
-    insert into public.care_plan_items (id, household_id, patient_id, care_plan_id, item_type, title, medication_id)
-      values ('${id(h, 19)}', '${H}', '${P}', '${id(h, 18)}', 'medication', 'Item ${h}', '${id(h, 14)}');
+    insert into public.care_plan_items (id, household_id, patient_id, care_plan_id, item_type, title, medication_id, times_of_day)
+      values ('${id(h, 19)}', '${H}', '${P}', '${id(h, 18)}', 'medication', 'Item ${h}', '${id(h, 14)}', '{08:00}');
     insert into public.reminders (id, household_id, patient_id, care_plan_item_id, due_at)
       values ('${id(h, 20)}', '${H}', '${P}', '${id(h, 19)}', now());
     insert into public.escalation_steps (household_id, reminder_id, step, action)
@@ -67,6 +67,8 @@ function populate(h: number): string {
       values ('${H}', '${id(h, 22)}', 'ack-hash-${h}', now() + interval '1 day');
     insert into public.invites (household_id, role, token_hash)
       values ('${H}', 'family', repeat('${h}', 64));
+    insert into public.device_pairings (household_id, patient_id, code_hash)
+      values ('${H}', '${P}', repeat('${h}', 63) || 'a');
   `;
 }
 
@@ -115,7 +117,7 @@ describe("schema and seed", () => {
        where n.nspname = 'public' and c.relkind = 'r' and not c.relrowsecurity`,
     );
     expect(off.rows).toEqual([]);
-    expect((await allTables()).length).toBe(24);
+    expect((await allTables()).length).toBe(25);
   });
 
   it("the seed applies twice and loads Meera, Anita, Ravi and an unverified plan", async () => {
@@ -141,13 +143,13 @@ describe("schema and seed", () => {
 
 describe("household A and household B cannot see each other", () => {
   // Server-only tables: RLS on, no client policy. Even the owner's own rows are invisible to clients.
-  const serverOnly = ["device_tokens", "ack_tokens", "invites"];
+  const serverOnly = ["device_tokens", "ack_tokens", "invites", "device_pairings"];
   // Readable only by the household admin.
   const adminOnly = ["audit_log"];
 
   it("covers every table", async () => {
     const tables = await allTables();
-    expect(tables.filter((t) => !["households", "users"].includes(t)).length).toBe(22);
+    expect(tables.filter((t) => !["households", "users"].includes(t)).length).toBe(23);
   });
 
   it.each([
@@ -309,16 +311,16 @@ describe("medicine verification and audit (VLT-4, VLT-5)", () => {
 describe("data integrity", () => {
   it("a medication plan item needs a vault medicine", async () => {
     await expect(
-      db.exec(`insert into public.care_plan_items (household_id, patient_id, care_plan_id, item_type, title)
-               values ('${A.household}', '${A.patient}', '${A.plan}', 'medication', 'No link')`),
-    ).rejects.toThrow(/check/);
+      db.exec(`insert into public.care_plan_items (household_id, patient_id, care_plan_id, item_type, title, times_of_day)
+               values ('${A.household}', '${A.patient}', '${A.plan}', 'medication', 'No link', '{08:00}')`),
+    ).rejects.toThrow(/care_plan_items_medication_link/);
   });
 
   it("a plan item cannot link to another household's medicine", async () => {
     await expect(
-      db.exec(`insert into public.care_plan_items (household_id, patient_id, care_plan_id, item_type, title, medication_id)
-               values ('${A.household}', '${A.patient}', '${A.plan}', 'medication', 'Cross link', '${B.med}')`),
-    ).rejects.toThrow(/foreign key|violates/);
+      db.exec(`insert into public.care_plan_items (household_id, patient_id, care_plan_id, item_type, title, medication_id, times_of_day)
+               values ('${A.household}', '${A.patient}', '${A.plan}', 'medication', 'Cross link', '${B.med}', '{08:00}')`),
+    ).rejects.toThrow(/foreign key/);
   });
 
   it("a duplicate escalation step is rejected (idempotency)", async () => {

@@ -1,5 +1,6 @@
 -- Nurra demo seed: Meera (patient), Anita (primary contact), Ravi (secondary), dementia care plan.
--- Run after 0001_init.sql, in the Supabase SQL editor. Safe to run twice.
+-- Run after ALL migrations in supabase/migrations (0001, 0002, 0003, ...), in the Supabase SQL editor.
+-- Safe to run twice. (Already ran it after 0001? 0003 converts that data; no need to run it again.)
 --
 -- This file does not create sign-in users. public.users rows need a Supabase Auth user, which
 -- comes from sign-up in Stage S2. All phone numbers below are placeholders: replace them with
@@ -51,28 +52,39 @@ values ('00000000-0000-4000-8000-000000000060', '00000000-0000-4000-8000-0000000
 on conflict (id) do nothing;
 
 insert into public.care_plan_items
-  (id, household_id, patient_id, care_plan_id, item_type, title, severity, medication_id, time_of_day, details, expires_on)
+  (id, household_id, patient_id, care_plan_id, item_type, title, severity, medication_id,
+   schedule_kind, times_of_day, on_date, details, expires_on)
 values
   ('00000000-0000-4000-8000-000000000071', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'medication', 'Morning tablet', 'important', '00000000-0000-4000-8000-000000000051', '08:00', null, null),
+   'medication', 'Morning tablet', 'important', '00000000-0000-4000-8000-000000000051',
+   'times', '{08:00}', null, null, null),
   ('00000000-0000-4000-8000-000000000072', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'meal', 'Breakfast', 'normal', null, '08:30', null, null),
+   'meal', 'Breakfast', 'normal', null, 'times', '{08:30}', null, null, null),
   ('00000000-0000-4000-8000-000000000073', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'water', 'A glass of water', 'normal', null, '11:00', null, null),
+   'water', 'A glass of water', 'normal', null, 'times', '{11:00}', null, null, null),
   ('00000000-0000-4000-8000-000000000074', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'exercise', 'Short walk in the garden', 'normal', null, '17:00', null, null),
+   'exercise', 'Short walk in the garden', 'normal', null, 'times', '{17:00}', null, null, null),
   ('00000000-0000-4000-8000-000000000075', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'medication', 'Evening tablet', 'critical', '00000000-0000-4000-8000-000000000052', '20:00', null, null),
+   'medication', 'Evening tablet', 'critical', '00000000-0000-4000-8000-000000000052',
+   'times', '{20:00}', null, null, null),
   ('00000000-0000-4000-8000-000000000076', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'checkin_question', 'How are you feeling today?', 'normal', null, '10:00', null, null),
+   'checkin_question', 'How are you feeling today?', 'normal', null, 'times', '{10:00}', null, null, null),
   ('00000000-0000-4000-8000-000000000077', '00000000-0000-4000-8000-000000000001',
    '00000000-0000-4000-8000-000000000010', '00000000-0000-4000-8000-000000000060',
-   'appointment', 'Anita is visiting on Saturday', 'normal', null, null,
+   'appointment', 'Anita is visiting on Saturday', 'normal', null, 'once', '{10:00}', current_date + 5,
    'Fact for the greeting. Expires so Nurra stops saying it.', current_date + 7)
 on conflict (id) do nothing;
+
+-- Linked plan items remember the medicine as it was when the plan accepted it.
+update public.care_plan_items i
+   set medication_snapshot = jsonb_build_object(
+         'strength', m.strength, 'dose', m.dose, 'frequency', m.frequency,
+         'timing', to_jsonb(m.timing), 'status', m.status)
+  from public.medications m
+ where m.id = i.medication_id and i.medication_snapshot is null;

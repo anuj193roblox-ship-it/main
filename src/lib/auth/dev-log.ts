@@ -23,6 +23,8 @@ const HINTS: Record<string, string> = {
   "invalid-input-secret": "TURNSTILE_SECRET_KEY is wrong for this site key",
   "timeout-or-duplicate": "the Turnstile token was already used or expired",
   AUTH_SESSION_SECRET: "set AUTH_SESSION_SECRET to at least 32 random characters",
+  captcha_failed:
+    "Supabase Auth has CAPTCHA protection on. Either turn it off (Auth > Attack protection) or set SUPABASE_VERIFIES_CAPTCHA=true with the Turnstile site key that matches the secret saved in Supabase",
   "missing-or-malformed": "this setting is missing or not in the expected format (check .env.local)",
 };
 

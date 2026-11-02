@@ -23,7 +23,7 @@ describe("security headers (next.config)", () => {
     expect(h["X-Frame-Options"]).toBe("DENY");
   });
 
-  it.each(["/app", "/app/:path*", "/mfa/:path*", "/auth/:path*", "/reset-password", "/invite/:path*", "/api/:path*"])(
+  it.each(["/app", "/app/:path*", "/onboarding/:path*", "/mfa/:path*", "/auth/:path*", "/reset-password", "/invite/:path*", "/api/:path*"])(
     "%s responses are no-store",
     async (source) => {
       expect(headersFor(await rules(), source)["Cache-Control"]).toContain("no-store");

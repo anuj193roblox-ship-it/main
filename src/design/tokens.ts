@@ -66,6 +66,9 @@ export const medicineStates = {
   refused: { tone: "warn", icon: "alert-triangle", word: "Refused" },
   unverified: { tone: "warn", icon: "alert-triangle", word: "Unverified" },
   verified: { tone: "ok", icon: "check-circle", word: "Verified by" },
+  // A family member or clinician confirmed the entry; a clinician has not verified it yet.
+  approved: { tone: "info", icon: "user-check", word: "Approved by" },
+  stopped: { tone: "neutral", icon: "clock", word: "Stopped" },
 } as const;
 
 export type MedicineState = keyof typeof medicineStates;

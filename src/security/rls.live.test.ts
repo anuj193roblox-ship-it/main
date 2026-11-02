@@ -61,7 +61,7 @@ describe.skipIf(!enabled)("live RLS: household A and household B cannot touch ea
     await must("contact", admin.from("contacts").insert({ ...base, name: `Contact ${label}`, priority: "primary" }).select("id").single());
     const med = await must("medication", admin.from("medications").insert({ ...base, brand_name: `Medicine ${label}`, ingredient: `ingredient-${label}` }).select("id").single());
     const plan = await must("care plan", admin.from("care_plans").insert({ ...base, name: `Plan ${label}` }).select("id").single());
-    const item = await must("care plan item", admin.from("care_plan_items").insert({ ...base, care_plan_id: plan.id, item_type: "medication", title: `Item ${label}`, medication_id: med.id }).select("id").single());
+    const item = await must("care plan item", admin.from("care_plan_items").insert({ ...base, care_plan_id: plan.id, item_type: "medication", title: `Item ${label}`, medication_id: med.id, times_of_day: ["08:00"] }).select("id").single());
     await must("allergy", admin.from("allergies").insert({ ...base, substance: `Substance ${label}` }).select("id").single());
     await must("condition", admin.from("conditions").insert({ ...base, name: `Condition ${label}` }).select("id").single());
     const reminder = await must("reminder", admin.from("reminders").insert({ ...base, care_plan_item_id: item.id, due_at: new Date().toISOString() }).select("id").single());
@@ -130,7 +130,7 @@ describe.skipIf(!enabled)("live RLS: household A and household B cannot touch ea
       expect(med.error, `${me.label} medicine onto ${other.label}'s patient`).not.toBeNull();
       const link = await me.client.from("care_plan_items").insert({
         household_id: me.householdId, patient_id: me.patientId, care_plan_id: (await admin.from("care_plans").select("id").eq("household_id", me.householdId).single()).data?.id,
-        item_type: "medication", title: "Cross link", medication_id: other.medicationId,
+        item_type: "medication", title: "Cross link", medication_id: other.medicationId, times_of_day: ["08:00"],
       });
       expect(link.error, `${me.label} plan item linked to ${other.label}'s medicine`).not.toBeNull();
     }

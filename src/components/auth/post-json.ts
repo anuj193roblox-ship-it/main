@@ -5,10 +5,14 @@ export type PostResult = { ok: boolean; status: number; data: Record<string, unk
 const OFFLINE = "You seem to be offline. Check your connection and try again.";
 const UNKNOWN = "Something went wrong on our side. Try again in a few minutes.";
 
-export async function postJson(url: string, body: unknown = {}): Promise<PostResult> {
+export function postJson(url: string, body: unknown = {}): Promise<PostResult> {
+  return sendJson("POST", url, body);
+}
+
+export async function sendJson(method: "POST" | "PATCH" | "DELETE", url: string, body: unknown = {}): Promise<PostResult> {
   try {
     const res = await fetch(url, {
-      method: "POST",
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
       cache: "no-store",

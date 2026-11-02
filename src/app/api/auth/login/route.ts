@@ -21,8 +21,11 @@ export async function POST(request: Request) {
         password,
         options: captchaToken ? { captchaToken } : undefined,
       });
-      if (error) deps.logStep("supabase", error.code);
-      return error || !data.user ? null : { userId: data.user.id };
+      if (error) {
+        deps.logStep("supabase", error.code);
+        return { errorCode: error.code ?? "unknown" };
+      }
+      return data.user ? { userId: data.user.id } : null;
     },
   });
 

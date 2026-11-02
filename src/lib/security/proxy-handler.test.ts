@@ -45,12 +45,12 @@ describe("proxy gate for /app", () => {
     expect(await res.text()).toBe("");
   });
 
-  it.each(["/app", "/app/secret-thing", "/mfa/verify"])("signed-out %s is redirected with an allowlisted next", async (path) => {
+  it.each(["/app", "/app/secret-thing", "/mfa/verify", "/app/vault", "/app/plan", "/onboarding/patient", "/onboarding/review"])("signed-out %s is redirected with an allowlisted next", async (path) => {
     const { deps } = fakeDeps(null);
     const res = await handleProxy(req(path), deps);
     expect(res.status).toBe(307);
     const next = new URL(res.headers.get("location")!).searchParams.get("next");
-    expect(["/app/today", "/mfa/verify"]).toContain(next);
+    expect(next).toBe(["/app", "/app/secret-thing"].includes(path) ? "/app/today" : path);
   });
 
   it("30 minutes without activity ends the session on the server and redirects", async () => {

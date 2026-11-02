@@ -11,8 +11,11 @@ export const VERIFY_RESENT = "If that email is waiting to be verified, a new lin
 export const LINK_EXPIRED = "This link has expired or was already used. Ask for a new one.";
 
 export type EmailLinkDeps = {
-  /** Sends the email. Errors are swallowed: the answer never depends on the account. */
-  send(email: string, redirectTo: string, captchaToken?: string): Promise<void>;
+  /**
+   * Sends the email. Errors are swallowed (the answer never depends on the account), except
+   * captcha_failed, which is about the check, not the account.
+   */
+  send(email: string, redirectTo: string, captchaToken?: string): Promise<void | { errorCode: string }>;
   limiter: RateLimiter;
   captcha: CaptchaPolicy;
   audit: AuditLogger;
@@ -50,7 +53,8 @@ export function requestEmailLink(
     }
 
     const redirectTo = kind === "reset" ? `${deps.siteUrl}/reset-password` : `${deps.siteUrl}/app/today`;
-    await deps.send(email, redirectTo, deps.captcha.forwardToSupabase ? captchaToken : undefined).catch(() => undefined);
+    const sent = await deps.send(email, redirectTo, deps.captcha.forwardToSupabase ? captchaToken : undefined).catch(() => undefined);
+    if (sent && sent.errorCode === "captcha_failed") return { status: 400, body: { error: CAPTCHA_FAILED } };
     await deps.audit({ action: kind === "reset" ? "auth.password_reset_requested" : "auth.verify_email_resent" });
     return { status: 200, body: { message: kind === "reset" ? RESET_SENT : VERIFY_RESENT } };
   });

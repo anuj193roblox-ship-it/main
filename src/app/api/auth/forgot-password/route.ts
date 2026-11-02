@@ -18,7 +18,10 @@ export async function POST(request: Request) {
     minMs: deps.config.signupMinMs,
     async send(email, redirectTo, captchaToken) {
       const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo, captchaToken });
-      if (error) deps.logStep("supabase", error.code);
+      if (error) {
+        deps.logStep("supabase", error.code);
+        return { errorCode: error.code ?? "unknown" };
+      }
     },
   });
   return respond(result);

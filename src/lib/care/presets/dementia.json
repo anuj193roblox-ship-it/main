@@ -1,0 +1,15 @@
+{
+  "preset": "dementia",
+  "name": "Daily routine",
+  "items": [
+    { "itemType": "medication", "placeholder": true, "title": "Morning medicines", "severity": "important", "schedule": { "kind": "times", "times": ["08:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "meal", "title": "Breakfast", "severity": "normal", "schedule": { "kind": "times", "times": ["08:30"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "checkin_question", "title": "How are you feeling today?", "severity": "normal", "schedule": { "kind": "times", "times": ["10:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "water", "title": "A glass of water", "severity": "normal", "schedule": { "kind": "interval", "everyMinutes": 120, "from": "09:00", "to": "19:00", "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "meal", "title": "Lunch", "severity": "normal", "schedule": { "kind": "times", "times": ["13:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "exercise", "title": "Short walk", "severity": "normal", "schedule": { "kind": "times", "times": ["17:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "meal", "title": "Dinner", "severity": "normal", "schedule": { "kind": "times", "times": ["19:30"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "medication", "placeholder": true, "title": "Evening medicines", "severity": "important", "schedule": { "kind": "times", "times": ["20:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "sleep", "title": "Time to get ready for bed", "severity": "normal", "schedule": { "kind": "times", "times": ["21:30"], "days": [0, 1, 2, 3, 4, 5, 6] } }
+  ]
+}

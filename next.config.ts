@@ -15,7 +15,7 @@ export const securityHeaders = [
 const noStore = [{ key: "Cache-Control", value: "private, no-store, max-age=0" }];
 
 // Signed-in and token-bearing pages must never be stored by browsers or shared caches.
-export const noStorePaths = ["/app", "/app/:path*", "/mfa/:path*", "/auth/:path*", "/reset-password", "/invite/:path*", "/api/:path*"];
+export const noStorePaths = ["/app", "/app/:path*", "/onboarding/:path*", "/patient", "/patient/:path*", "/mfa/:path*", "/auth/:path*", "/reset-password", "/invite/:path*", "/api/:path*"];
 
 const nextConfig: NextConfig = {
   // Must stay off: private pages must never be cached on the server (AGENTS.md).

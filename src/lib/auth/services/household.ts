@@ -31,7 +31,8 @@ export async function createHousehold(raw: unknown, ctx: Ctx, deps: CreateHouseh
 
   const householdId = await deps.createHousehold(ctx.userId, parsed.data.displayName, parsed.data.householdName);
   if (!householdId) return { status: 409, body: { error: ALREADY_IN_HOUSEHOLD } };
-  return { status: 201, body: { next: "/app/today" } };
+  // Straight on to adding the person they care for (ONB-1).
+  return { status: 201, body: { next: "/onboarding/patient" } };
 }
 
 export type ClaimDemoDeps = {

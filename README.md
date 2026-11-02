@@ -20,6 +20,17 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Database migrations
+
+`npm run db:migrate` applies `supabase/migrations/*.sql` to your Supabase database in filename order, each file in its own transaction. Applied files are recorded in `nurra_private.applied_migrations` (no access for app users), so each file runs once. It stops at the first error and rolls that file back.
+
+1. Add `DATABASE_URL` to `.env.local`. In the Supabase dashboard, click **Connect**, copy the **Session pooler** connection string, and replace `[YOUR-PASSWORD]` with your database password. If you don't know it, reset it under **Project Settings > Database**. This value is a full-access secret: never commit it, never give it a `NEXT_PUBLIC_` prefix.
+2. See where things stand: `npm run db:migrate -- --check` lists which migrations are recorded and whether `public.patients` and `public.invites` exist. Then preview: `npm run db:migrate -- --dry-run`. Both change nothing.
+3. Files you already ran by hand in the SQL editor: `npm run db:migrate -- --baseline 0001` (comma-separate several, e.g. `--baseline 0001,0002`). This records them without running them.
+4. Apply: `npm run db:migrate`
+
+It refuses to run when `NODE_ENV=production`. After migrations, `supabase/seed.sql` (demo data) is still run by hand.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

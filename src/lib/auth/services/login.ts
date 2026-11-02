@@ -10,7 +10,8 @@ import { CAPTCHA_FAILED, rateLimited, type ServiceResult, SOMETHING_WRONG } from
 export const GENERIC_LOGIN_ERROR = "Email or password is not right, or the email is not verified yet.";
 
 export type LoginDeps = {
-  signInWithPassword(email: string, password: string, captchaToken?: string): Promise<{ userId: string } | null>;
+  /** null or { errorCode } for a failed sign-in. Supabase error codes such as captcha_failed pass through. */
+  signInWithPassword(email: string, password: string, captchaToken?: string): Promise<{ userId: string } | { errorCode: string } | null>;
   householdOf(userId: string): Promise<string | null>;
   limiter: RateLimiter;
   captcha: CaptchaPolicy;
@@ -49,7 +50,11 @@ async function attempt(raw: unknown, ctx: { ip: string }, deps: LoginDeps): Prom
   }
 
   const result = await deps.signInWithPassword(email, password, deps.captcha.forwardToSupabase ? captchaToken : undefined);
-  if (!result) {
+  // Supabase rejected the CAPTCHA token before looking at the account, so saying so reveals nothing.
+  if (result && "errorCode" in result && result.errorCode === "captcha_failed") {
+    return { status: 400, body: { error: CAPTCHA_FAILED } };
+  }
+  if (!result || !("userId" in result)) {
     await deps.audit({ action: "auth.login_failure" });
     return { status: 401, body: { error: GENERIC_LOGIN_ERROR } };
   }

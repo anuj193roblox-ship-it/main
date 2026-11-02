@@ -25,7 +25,7 @@ export type ProxyDeps = {
 };
 
 export function isProtectedPath(pathname: string): boolean {
-  return pathname === "/app" || pathname.startsWith("/app/") || pathname === "/mfa" || pathname.startsWith("/mfa/");
+  return ["/app", "/mfa", "/onboarding"].some((p) => pathname === p || pathname.startsWith(`${p}/`));
 }
 
 const NO_STORE = "private, no-store, max-age=0";

@@ -1,0 +1,16 @@
+{
+  "preset": "post_surgery",
+  "name": "Recovery after surgery",
+  "items": [
+    { "itemType": "medication", "placeholder": true, "title": "Morning medicines", "severity": "important", "schedule": { "kind": "times", "times": ["08:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "meal", "title": "Breakfast", "severity": "normal", "schedule": { "kind": "times", "times": ["08:30"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "reading", "title": "Temperature check", "severity": "important", "schedule": { "kind": "times", "times": ["09:00", "18:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "water", "title": "A glass of water", "severity": "normal", "schedule": { "kind": "interval", "everyMinutes": 90, "from": "09:00", "to": "20:00", "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "checkin_question", "title": "How is the pain today, from 0 to 10?", "severity": "important", "schedule": { "kind": "times", "times": ["11:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "medication", "placeholder": true, "title": "Afternoon medicines", "severity": "important", "schedule": { "kind": "times", "times": ["14:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "exercise", "title": "Gentle movement, as advised by the care team", "severity": "normal", "schedule": { "kind": "times", "times": ["16:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "checkin_question", "title": "Is the wound dressing clean and dry?", "severity": "important", "schedule": { "kind": "times", "times": ["18:30"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "medication", "placeholder": true, "title": "Night medicines", "severity": "important", "schedule": { "kind": "times", "times": ["21:00"], "days": [0, 1, 2, 3, 4, 5, 6] } },
+    { "itemType": "sleep", "title": "Time to rest", "severity": "normal", "schedule": { "kind": "times", "times": ["21:30"], "days": [0, 1, 2, 3, 4, 5, 6] } }
+  ]
+}

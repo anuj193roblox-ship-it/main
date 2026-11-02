@@ -45,7 +45,24 @@
   --info-text: #8ab8ea;
 }
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+/* Patient mode is always light (spec 3.1): .theme-light resets the light values, even inside a
+   dark page. Custom properties set on an element beat inherited ones, so this always wins. */
+.theme-light {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #1b2b27;
+  --text-muted: #4a5d58;
+  --primary: #1f6f5c;
+  --border-input: #6f8a83;
+  --ok-text: #1e7a50;
+  --warn-text: #7a5600;
+  --danger-text: #a82e2e;
+  --info-text: #245a94;
+  color-scheme: light;
+}
+
+/* dark: utilities never apply inside .theme-light. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *):not(:where(.theme-light, .theme-light *)));
 
 @theme inline {
   --color-primary: var(--primary);

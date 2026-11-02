@@ -18,7 +18,10 @@ export type AuthAuditAction =
   | "auth.mfa_verified"
   | "auth.mfa_failure"
   | "auth.invite_created"
-  | "auth.invite_rejected";
+  | "auth.invite_rejected"
+  | "device.pairing_code_created"
+  | "device.pair_failed"
+  | "device.revoked";
 
 export type AuditEvent = {
   action: AuthAuditAction;

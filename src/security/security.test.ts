@@ -54,11 +54,11 @@ describe("schema: RLS on every table (PLAT-1)", () => {
   });
 
   it("token and invite tables have no client policies", () => {
-    expect(migration).not.toMatch(/on public\.(device_tokens|ack_tokens|invites)\s+for/);
+    expect(migration).not.toMatch(/on public\.(device_tokens|ack_tokens|invites|device_pairings)\s+for/);
   });
 
   it("auth functions are revoked from clients and granted to service_role only", () => {
-    for (const fn of ["check_rate_limit", "reset_rate_limit", "create_household_for_user", "claim_demo_household", "accept_invite"]) {
+    for (const fn of ["check_rate_limit", "reset_rate_limit", "create_household_for_user", "claim_demo_household", "accept_invite", "consume_pairing_code"]) {
       expect(migration, fn).toMatch(new RegExp(`revoke all on function public\\.${fn}\\([^)]*\\) from public, anon, authenticated;`));
       expect(migration, fn).toMatch(new RegExp(`grant execute on function public\\.${fn}\\([^)]*\\) to service_role;`));
     }
@@ -120,13 +120,17 @@ describe("roles come only from public.users", () => {
 
   it("every state-changing route handler checks the Origin first", () => {
     const routes = srcFiles.filter((f) => /src[\\/]app[\\/]api[\\/].*route\.ts$/.test(f));
-    expect(routes.length).toBeGreaterThanOrEqual(13);
+    expect(routes.length).toBeGreaterThanOrEqual(23);
+    let handlers = 0;
     for (const f of routes) {
       const text = readFileSync(f, "utf8");
-      if (!/export async function (POST|PUT|PATCH|DELETE)/.test(text)) continue;
-      const body = text.slice(text.search(/export async function (POST|PUT|PATCH|DELETE)/));
-      expect(body, rel(f)).toMatch(/^[^]*?\{\s*const blocked = rejectCrossSite\(request\);\s*if \(blocked\) return blocked;/);
+      // Every exported state-changing handler in the file, not only the first.
+      for (const m of text.matchAll(/export async function (POST|PUT|PATCH|DELETE)\([^)]*\)[^{]*\{([^]{0,120})/g)) {
+        handlers++;
+        expect(m[2], `${rel(f)} ${m[1]}`).toMatch(/^\s*const blocked = rejectCrossSite\(request\);\s*if \(blocked\) return blocked;/);
+      }
     }
+    expect(handlers).toBeGreaterThanOrEqual(33); // 13 auth (S2) + 13 care (S3) + 7 patient devices (S4)
   });
 });
 
